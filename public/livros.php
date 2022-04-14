@@ -21,7 +21,7 @@
 
         $conexao = RetornaConexao();
 
-        $item = 'id_livro';
+        $item = 'livro_id';
         $titulo = 'titulo';
         $autor = 'autor';
         $genero = 'genero';
