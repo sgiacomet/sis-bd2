@@ -51,3 +51,22 @@ SELECT nome,titulo
   FROM leituras
   JOIN leitores AS lt on lt.leitor_id = leituras.leitor
   JOIN livros as li on leituras.livro = li.livro_id;
+  
+  CREATE TABLE amizades ( leitor1   INT
+						, leitor2   INT
+						, CONSTRAINT leitor1_fk FOREIGN KEY(leitor1) REFERENCES leitores(leitor_id)
+						, CONSTRAINT leitor2_fk FOREIGN KEY(leitor2) REFERENCES leitores(leitor_id)
+						);               
+                                      
+INSERT INTO amizades (leitor1,leitor2) VALUES (1,2);
+INSERT INTO amizades (leitor1,leitor2) VALUES (1,3);
+INSERT INTO amizades (leitor1,leitor2) VALUES (1,5);
+INSERT INTO amizades (leitor1,leitor2) VALUES (5,1);
+INSERT INTO amizades (leitor1,leitor2) VALUES (2,1);
+INSERT INTO amizades (leitor1,leitor2) VALUES (2,3);
+INSERT INTO amizades (leitor1,leitor2) VALUES (2,4);
+INSERT INTO amizades (leitor1,leitor2) VALUES (3,1);
+INSERT INTO amizades (leitor1,leitor2) VALUES (3,2);
+INSERT INTO amizades (leitor1,leitor2) VALUES (4,2);
+
+

@@ -15,26 +15,32 @@
     <div class="content">
         <h1>Bibliófilo's</h1>
 
-        <h2>Leitores</h2>
+        <h2>Leituras</h2>
         <?php
         require 'mysql_server.php';
 
         $conexao = RetornaConexao();
 
-        $nuser = 'leitor_id';
-        $nome = 'nome';
-        $username = 'username';
-
-
+        
+        $leitor1 = 'leitor1';
+        $leitor2 = 'leitor2';
+      
 
         /*TODO-1: Adicione uma variavel para cada coluna */
 
 
         $sql =
-            'SELECT ' . $nuser .
-            '     , ' . $nome .
-            '     , ' . $username .
-            '  FROM leitor';
+
+            ' SELECT lt1.nome leitor1, lt2.nome leitor2' .
+            ' FROM amizades' .
+            ' JOIN leitor AS lt1 on lt1.leitor_id = amizades.leitor1 ' .
+            ' JOIN leitor AS lt2 on lt2.leitor_id = amizades.leitor2' ;
+
+
+
+
+            /*TODO-2: Adicione cada variavel a consulta abaixo */
+
 
 
         $resultado = mysqli_query($conexao, $sql);
@@ -47,8 +53,8 @@
         $cabecalho =
             '<table>' .
             '    <tr>' .
-            '        <th>' . "Nome" . '</th>' .
-            '        <th>' . "Username" . '</th>' .
+            '        <th>' . $leitor1 . '</th>' .
+            '        <th>' . $leitor2 . '</th>' .
             '    </tr>';
                 /* TODO-3: Adicione as variaveis ao cabeçalho da tabela */
 
@@ -60,9 +66,8 @@
             while ($registro = mysqli_fetch_assoc($resultado)) {
                 echo '<tr>';
                 /* TODO-4: Adicione a tabela os novos registros. */
-                echo 
-                     '<td>' . $registro[$nome] . '</td>' .                
-                     '<td>' . $registro[$username] . '</td>' ;
+                echo '<td>' . $registro[$leitor1] . '</td>' .
+                     '<td>' . $registro[$leitor2] . '</td>' ;
 
                 echo '</tr>';
             }

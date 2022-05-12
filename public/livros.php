@@ -21,26 +21,22 @@
 
         $conexao = RetornaConexao();
 
-        $item = 'livro_id';
+       
         $titulo = 'titulo';
-        $autor = 'autor';
         $genero = 'genero';
         $editora = 'editora';
+        $autor = 'autor_id';
         $classificacao = 'classificacao';
-
+        $formato = 'formato'; 
 
         /*TODO-1: Adicione uma variavel para cada coluna */
 
 
         $sql =
-            'SELECT ' . $item .
-            '     , ' . $titulo .
-            '     , ' . $autor .
-            '     , ' . $genero .            
-            '     , ' . $editora .
-            '     , ' . $classificacao .
-            /*TODO-2: Adicione cada variavel a consulta abaixo */
-            '  FROM livros';
+        ' SELECT livro.titulo, autor.nome autor_id, livro.genero, livro.editora, livro.classificacao, livro.formato'.
+        ' FROM livro' .
+        ' JOIN autor on autor.autor_id = livro.autor_id' ;
+
 
 
         $resultado = mysqli_query($conexao, $sql);
@@ -53,12 +49,12 @@
         $cabecalho =
             '<table>' .
             '    <tr>' .
-            '        <th>' . 'item' . '</th>' .
-            '        <th>' . $titulo . '</th>' .
-            '        <th>' . $autor . '</th>' .
-            '        <th>' . $genero . '</th>' .
-            '        <th>' . $editora . '</th>' .
-            '        <th>' . $classificacao . '</th>' .
+            '        <th>' . 'TITULO' . '</th>' .
+            '        <th>' . 'AUTOR' . '</th>' .
+            '        <th>' . 'GENERO' . '</th>' .
+            '        <th>' . 'EDITORA' . '</th>' .
+            '        <th>' . 'CLASSIFICAÇÃO' . '</th>' .
+            '        <th>' . 'FORMATO'. '</th>' .
             '    </tr>';
                 /* TODO-3: Adicione as variaveis ao cabeçalho da tabela */
 
@@ -69,12 +65,12 @@
             while ($registro = mysqli_fetch_assoc($resultado)) {
                 echo '<tr>';
                 /* TODO-4: Adicione a tabela os novos registros. */
-                echo '<td>' . $registro[$item] . '</td>' .
-                     '<td>' . $registro[$titulo] . '</td>' .                
-                    '<td>' . $registro[$autor] . '</td>' .
-                    '<td>' . $registro[$genero] . '</td>'.
-                    '<td>' . $registro[$editora] . '</td>' .
-                    '<td>' . $registro[$classificacao] . '</td>';
+                echo '<td>' . $registro[$titulo] . '</td>' . 
+                     '<td>' . $registro[$autor] . '</td>'.           
+                     '<td>' . $registro[$genero] . '</td>'.
+                     '<td>' . $registro[$editora] . '</td>'.
+                     '<td>' . $registro[$classificacao] . '</td>'.
+                     '<td>' . $registro[$formato] . '</td>' ;
 
                 echo '</tr>';
             }

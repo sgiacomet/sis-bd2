@@ -22,20 +22,17 @@
         $conexao = RetornaConexao();
 
         
-        $leitor = 'leitor';
-        $livro = 'livro';
-
+        $leitor = 'leitor_id';
+        $livro = 'livro_id';
 
         /*TODO-1: Adicione uma variavel para cada coluna */
 
 
         $sql =
-            'SELECT ' . $leitor .
-            '     , ' . $livro .
-
-            /*TODO-2: Adicione cada variavel a consulta abaixo */
-            '  FROM leituras';
-
+            ' SELECT lt.nome leitor_id, lv.titulo livro_id' .
+            ' FROM leituras' .
+            ' JOIN leitor AS lt on lt.leitor_id = leituras.leitor_id ' .
+            ' JOIN livro AS lv on lv.livro_id = leituras.livro_id' ;
 
         $resultado = mysqli_query($conexao, $sql);
         if (!$resultado) {
@@ -47,8 +44,8 @@
         $cabecalho =
             '<table>' .
             '    <tr>' .
-            '        <th>' . $leitor . '</th>' .
-            '        <th>' . $livro . '</th>' .
+            '        <th>' . 'Leitor' . '</th>' .
+            '        <th>' . 'Livro' . '</th>' .
             '    </tr>';
                 /* TODO-3: Adicione as variaveis ao cabeçalho da tabela */
 
